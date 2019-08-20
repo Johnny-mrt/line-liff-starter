@@ -1,84 +1,95 @@
+<!DOCTYPE html>
+<html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIFF Starter</title>
-    <link rel="stylesheet" href="style.css">
+<h1>篩選功能測試</h1>
 </head>
-
 <body>
-    <div class="buttongroup">
-        <div class="buttonrow">
-            <button id="openwindowbutton">Open Window</button>
-            <button id="closewindowbutton">Close Window</button>
-        </div>
-        <div class="buttonrow">
-            <button id="getaccesstoken">Get Access Token</button>
-            <button id="getprofilebutton">Get Profile</button>
-            <button id="sendmessagebutton">Send Message</button>
-        </div>
-    </div>
+  <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  
+  <select id="Station" class="easyui-combobox" name="Station">
+      <option value="G01">G_新店</option>
+      <option value="G10">G_古亭</option>
+      <option value="G11">G_中正紀念堂</option>
+      <option value="BL07">BL_台北車站</option>
+      <option value="R13" selected>R_台北車站</option>
+      <option value="R33">R_淡水</option>
+  </select>
+  
+  <select id="Device" class="easyui-combobox" name="Device">
+      <option value="ATIM" selected>ATIM</option>
+      <option value="GATE">GATE</option>
+      <option value="CCBE">CCBE</option>
+      <option value="PAM">PAM</option>
+  </select>
+  
+  <select id="Number" class="easyui-combobox" name="Number">
+      <option value=1 selected>01</option>
+      <option value=2>02</option>
+      <option value=3>03</option>
+      <option value=4>04</option>
+      <option value=5>05</option>
+      <option value=6>06</option>
+      <option value=7>07</option>    
+      <option value=8>08</option>
+      <option value=9>09</option>
+      <option value=10>10</option>    
+  </select>
+  
+  <button onclick="myFunction()">送出查詢</button>
+  
+  <script>
+    function initializeApp(data) {
+            var userid = data.context.userId;
+    }//取得用戶ID
 
-    <div id="accesstokendata">
-        <h2>Access Token</h2>
-        <a href="#" onclick="toggleAccessToken()">Close Access Token</a>
-        <table border="1">
-            <tr>
-                <th>accessToken</th>
-                <td id="accesstokenfield"></td>
-            </tr>
-        </table>
-    </div>
+    function Submit(comboText) {
+            //資料檢查
+            //if (amount == '' || Type == '' || Type.includes('(') || Type.includes(')')) {
+            //    alert('資料不完整!');
+            //    return;
+            //}
+            //組出新增字串
+            //var msg = "/add/";
+            //msg = msg + amount + "/";
+            //msg = msg + Type + "/";
+            //msg = msg + Memo + "/";
+            //msg = msg + DateTime + "/";
+            //把訊息以用戶的身分發送給LINE Bot
+            liff.sendMessages([
+                {
+                    type: 'text',
+                    text: comboText
+                }
+            ])
+                .then(() => {
+                    //建立成功，關閉視窗
+                    liff.closeWindow();
+                });
+        }
 
-    <div id="profileinfo">
-        <h2>Profile</h2>
-        <a href="#" onclick="toggleProfileData()">Close Profile</a>
-        <div id="profilepicturediv">
-        </div>
-        <table border="1">
-            <tr>
-                <th>userId</th>
-                <td id="useridprofilefield"></td>
-            </tr>
-            <tr>
-                <th>displayName</th>
-                <td id="displaynamefield"></td>
-            </tr>
-            <tr>
-                <th>statusMessage</th>
-                <td id="statusmessagefield"></td>
-            </tr>
-        </table>
-    </div>
-
-    <div id="liffdata">
-        <h2>LIFF Data</h2>
-        <table border="1">
-            <tr>
-                <th>language</th>
-                <td id="languagefield"></td>
-            </tr>
-            <tr>
-                <th>context.viewType</th>
-                <td id="viewtypefield"></td>
-            </tr>
-            <tr>
-                <th>context.userId</th>
-                <td id="useridfield"></td>
-            </tr>
-            <tr>
-                <th>context.utouId</th>
-                <td id="utouidfield"></td>
-            </tr>
-            <tr>
-                <th>context.roomId</th>
-                <td id="roomidfield"></td>
-            </tr>
-            <tr>
-                <th>context.groupId</th>
-                <td id="groupidfield"></td>
-            </tr>
-        </table>
-    </div>
-    
-    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
-    <script src="liff-starter.js"></script>
+    $(document).ready(function(){
+      liff.init(function (data) {
+        initializeApp(data);
+      });
+      $("#category").combobox({
+        panelHeight:'80px',
+        panelWidth:150
+        });
+      });
+    //$('#Station').change(function () {
+      //alert($('#Station').find(":selected").text().trim());
+    //  alert($('#Station').find(":selected").val());
+    //  });
+    $('#btn_addRecord').click(function (e) {
+      alert(document.getElementById('Station').value);
+    });
+    function myFunction(){
+      var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
+    alert(comboText);
+}
+  </script>
 </body>
+
+</html>
+  
