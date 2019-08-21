@@ -37,8 +37,8 @@
       <option value="9">09</option>
       <option value="10">10</option>
   </select>
-  <button onclick="myFunction()">送出查詢</button>
   
+  <button class="btn btn-success btn-block" id="btn_addRecord">送出查詢</button>
   <script>
 
     function initializeApp(data){
@@ -46,27 +46,33 @@
     }//取得用戶ID
 
     function Submit(comboText){
-            liff.sendMessages([
-                {
-                    type: 'text',
-                    text: comboText
-                }
-            ])
-                .then(() => {
+     liff.sendMessages([
+     {
+       type: 'text',
+       text: comboText
+     }
+     ])
+       .then(() => {
                     //建立成功，關閉視窗
                     liff.closeWindow();
                 });
-        }
+    }
     
     function myFunction(){
       var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
       Submit(comboText);
+      //alert(comboText);
     }
     
     $(document).ready(function(){
       liff.init(function (data) {
         initializeApp(data);
       });
+     $('#btn_addRecord').click(function (e) {
+       //新增
+       myFunction();
+    });
+      
     });
 
   </script>
