@@ -3,11 +3,6 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-   
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
 <h1>篩選功能測試</h1>
 </head>
 <body>
@@ -46,24 +41,11 @@
   
   <script>
 
-    function initializeApp(data) {
+    function initializeApp(data){
             var userid = data.context.userId;
     }//取得用戶ID
 
-    function Submit(comboText) {
-            //資料檢查
-            //if (amount == '' || Type == '' || Type.includes('(') || Type.includes(')')) {
-            //    alert('資料不完整!');
-            //    return;
-            //}
-            //組出新增字串
-            //var msg = "/add/";
-            //msg = msg + amount + "/";
-            //msg = msg + Type + "/";
-            //msg = msg + Memo + "/";
-            //msg = msg + DateTime + "/";
-            //把訊息以用戶的身分發送給LINE Bot
-
+    function Submit(comboText){
             liff.sendMessages([
                 {
                     type: 'text',
@@ -75,28 +57,18 @@
                     liff.closeWindow();
                 });
         }
-
+    
+    function myFunction(){
+      var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
+      Submit(comboText);
+    }
+    
     $(document).ready(function(){
       liff.init(function (data) {
         initializeApp(data);
       });
-
-
-    //$('#Station').change(function () {
-      //alert($('#Station').find(":selected").text().trim());
-    //  alert($('#Station').find(":selected").val());
-    //  });
-
-
-    $('#btn_addRecord').click(function (e) {
-      alert(document.getElementById('Station').value);
     });
 
-    function myFunction(){
-      var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
-      Submit(comboText);
-    //alert(comboText);
-};
   </script>
 </body>
 
