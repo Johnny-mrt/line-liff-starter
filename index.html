@@ -2,8 +2,6 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script type="text/javascript" src="/line-liff-starter/Number.json"></script>
-  <script type="text/javascript" src="/line-liff-starter/jquery.easyui.min.js"></script>
 
   <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -32,9 +30,6 @@
       <option value="PAM">PAM</option>
   </select>
   
-  <input name="belongs" id="belongs"></input>
-  
-
   <select id="Number" class="easyui-combobox" name="Number">
       <option value="1" selected>01</option>
       <option value="2">02</option>
@@ -50,35 +45,6 @@
   <button onclick="myFunction()">送出查詢</button>
   
   <script>
-
-  function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
-    }
-    rawFile.send(null);
-}
-  var data1
-  readTextFile("https://johnny-mrt.github.io/line-liff-starter/Number.json", function(text){
-  data1 = JSON.parse(text);
- console.log(data1);
-  });
-
-
-
-
-
-
-
-
-
-
-
-
 
     function initializeApp(data) {
             var userid = data.context.userId;
@@ -114,21 +80,13 @@
         initializeApp(data);
       });
 
-$("#belongs").combobox({
-    valueField:'id',
-    textField:'text',
-    data:data1
-    });
-      
-
-
-
-
 
     //$('#Station').change(function () {
       //alert($('#Station').find(":selected").text().trim());
     //  alert($('#Station').find(":selected").val());
     //  });
+
+
     $('#btn_addRecord').click(function (e) {
       alert(document.getElementById('Station').value);
     });
