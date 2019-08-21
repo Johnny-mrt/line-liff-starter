@@ -49,6 +49,40 @@
   <button onclick="myFunction()">送出查詢</button>
   
   <script>
+
+  function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+  var data1
+  readTextFile("https://johnny-mrt.github.io/line-liff-starter/Number.json", function(text){
+  data1 = JSON.parse(text);
+ console.log(data1);
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     function initializeApp(data) {
             var userid = data.context.userId;
     }//取得用戶ID
@@ -83,12 +117,11 @@
         initializeApp(data);
       });
 
-
-      $("#belongs").combobox({
-        valueField:'id',
-        textField:'text',
-        data:JSON.parse(Number)
-        });
+$("#belongs").combobox({
+    valueField:'id',
+    textField:'text',
+    data:data1
+    });
       
 
 
