@@ -68,11 +68,15 @@
       liff.init(function (data) {
         initializeApp(data);
       });
-	$('#Number').combobox({  
-    		url:'https://johnny-mrt.github.io/line-liff-starter/Number.json';
-   		valueField:'id'; 
-    		textField:'text';
-	}); 
+	var url='https://johnny-mrt.github.io/line-liff-starter/Number.json';
+$.getJSON(url,function(json) {
+    $('#Number').combobox({
+        data: json.jsonResult.rows;
+        valueField: 'ID';
+        textField: 'TEXT';
+    });
+});
+
     //$('#Station').change(function () {
       //alert($('#Station').find(":selected").text().trim());
     //  alert($('#Station').find(":selected").val());
