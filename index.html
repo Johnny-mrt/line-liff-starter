@@ -72,8 +72,8 @@
 $.getJSON(url,function(json) {
     $('#Number').combobox({
         data: json.jsonResult.rows;
-        valueField: 'ID';
-        textField: 'TEXT';
+        valueField: 'id';
+        textField: 'text';
     });
 });
 
