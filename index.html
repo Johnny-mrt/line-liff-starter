@@ -77,11 +77,11 @@
       liff.init(function (data) {
         initializeApp(data);
       });
-      $("#category").combobox({
-        panelHeight:'80px',
-        panelWidth:150
-        });
-      });
+	$('#Number').combobox({  
+    		url:'Number.json',  
+   		valueField:'id',  
+    		textField:'text'  
+	}); 
     //$('#Station').change(function () {
       //alert($('#Station').find(":selected").text().trim());
     //  alert($('#Station').find(":selected").val());
