@@ -28,8 +28,8 @@
       <option value="PAM">PAM</option>
   </select>
   
+  <input id="Number" name="Number" value="01">
 
-  <input id="Number" class="easyui-combobox" data-options="valueField:'id',textField:'text'">
   <button onclick="myFunction()">送出查詢</button>
   
   <script>
@@ -66,15 +66,11 @@
       liff.init(function (data) {
         initializeApp(data);
       });
-	var url='https://johnny-mrt.github.io/line-liff-starter/Number.json';
-$.getJSON(url,function(json) {
-    $('#Number').combobox({
-        data: json.jsonResult.rows;
-        valueField: 'id';
-        textField: 'text';
-    });
-});
-
+	$('#Number').combobox({
+    		url:'Number.json';
+    		valueField:'id';
+    		textField:'text';
+	});
     //$('#Station').change(function () {
       //alert($('#Station').find(":selected").text().trim());
     //  alert($('#Station').find(":selected").val());
