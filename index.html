@@ -82,9 +82,7 @@
         })()*/
         (function () {
             $(document).on("pageload", "#Page1", function () {
-                alert(2);
                 liff.init(function (data) {
-                    alert(1);
                     initializeApp(data);
                 }
                 // 頁面第一次執行時會觸發
@@ -97,7 +95,6 @@
         })();
 
         function initializeApp(data){
-            alert(1);
             var userid = data.context.userId;
         }//取得用戶ID
             
@@ -113,8 +110,8 @@
                 
         function myFunction(){
             var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
-            alert(comboText);
-            //Submit(comboText);
+            //alert(comboText);
+            Submit(comboText);
              //alert(comboText);
         }
                 
