@@ -65,7 +65,7 @@
 
     <script>
 
-        (function () {
+       /* (function () {
             $(document).on("pageinit", "#Page1", function () {
                 alert(1);
                 liff.init(function (data) {
@@ -79,9 +79,9 @@
                 myFunction();
             }); 
 
-        })()
+        })()*/
         (function () {
-            $(document).on("pageshow", "#Page1", function () {
+            $(document).on("pageload", "#Page1", function () {
                 alert(2);
                 liff.init(function (data) {
                     alert(1);
@@ -89,8 +89,8 @@
                 }
                 // 頁面第一次執行時會觸發
                 // 程式寫在這裡
-            });
-            $('#btn_addRecord').on("tap", function () {
+            );
+            $('#btn_addRecord').on("vclick", function () {
                 myFunction();
             }); 
             });
