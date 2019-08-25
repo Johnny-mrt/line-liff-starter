@@ -15,7 +15,7 @@
 
 </head>
 <body>
-    <div data-role="page">
+    <div id="Page1" data-role="page">
             <div data-role="header">
             <h1>請選擇欲篩選設備</h1>
             </div>
@@ -60,12 +60,35 @@
                   </select>
                 </fieldset>    
                 <button class="ui-btn ui-icon-search ui-btn-icon-left" id="btn_addRecord">送出查詢</button>
-             
             </div>
           </div>
 
     <script>
+
+        (function () {
+            $(document).on("pageinit", "#Page1", function () {
+                alert(1);
+                liff.init(function (data) {
+                    alert(1);
+                    initializeApp(data);
+                }
+                // 頁面第一次執行時會觸發
+                // 程式寫在這裡
+            });
+            $('#btn_addRecord').click(function (e) {
+                myFunction();
+            }); 
+
+        })()
+        (function () {
+            $(document).on("pageshow", "#Page1", function () {
+                // 頁面載入會觸發
+                // 程式寫在這裡
+            });
+        })();
+
         function initializeApp(data){
+            alert(1);
             var userid = data.context.userId;
         }//取得用戶ID
             
@@ -86,14 +109,15 @@
              //alert(comboText);
         }
                 
-        $(document).ready(function(){
+        /*$(document).ready(function(){
             liff.init(function (data) {
+                alert(1);
                 initializeApp(data);
             });
             $('#btn_addRecord').click(function (e) {
                 myFunction();
             });  
-        });
+        });*/
             
     </script>
 </body>
