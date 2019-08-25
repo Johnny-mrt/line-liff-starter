@@ -8,123 +8,86 @@
         @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
         * {font-family: 'Noto Sans TC',sans-serif;}
     </style>
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script> 
 
 </head>
 <body>
-    <div data-role="page" id="Page1">
-            <div data-role="header">
-            <h1>請選擇欲篩選設備</h1>
-            </div>
+        <select name="Station" class="easyui-combobox" id="Station">
+                <optgroup label="板南線">
+                    <option value="BL07" selected>BL台北車站</option>
+                </optgroup>
+                <optgroup label="淡水線">
+                    <option value="R12">R臺大醫院站</option>
+                    <option value="R13">R台北車站</option>
+                    <option value="R14">R中山站</option>
+                    <option value="R15">R雙連站</option>
+                </optgroup>   
+                <optgroup label="新店線">
+                        <option value="G01">G新店站</option>
+                        <option value="G02">G新店區公所站</option>
+                </optgroup>
+          </select>
+      
+          <select name="Device" class="easyui-combobox" id="Device">
+                <option value="ATIM" selected>ATIM</option>
+                <option value="GATE">GATE</option>
+                <option value="PAM">PAM</option>
+                <option value="CCBE">CCBE</option>
+                <option value="SPS">SPS</option>
+          </select>
+      
+          <select name="Number" class="easyui-combobox" id="Number">
+                <option value="1" selected>01</option>
+                <option value="2">02</option>
+                <option value="3">03</option>
+                <option value="4">04</option>
+                <option value="5">05</option>
+                <option value="6">06</option>
+                <option value="7">07</option>
+                <option value="8">08</option>
+                <option value="9">09</option>
+                <option value="10">10</option>
+          </select>
+        
+        <button class="btn btn-success btn-block" id="btn_addRecord">送出查詢</button>
+        <script>
+      
+          function initializeApp(data){
+                  var userid = data.context.userId;
+          }//取得用戶ID
+      
+          function Submit(comboText){
+           liff.sendMessages([
+           {
+             type: 'text',
+             text: comboText
+           }
+           ])
+             .then(() => {
+                          //建立成功，關閉視窗
+                          liff.closeWindow();
+                      });
+          }
           
-            <div data-role="main" class="ui-content">
-                <fieldset data-role="fieldcontain">
-                  <select name="Station" id="Station">
-                        <optgroup label="板南線">
-                            <option value="BL07" selected>BL台北車站</option>
-                        </optgroup>
-                        <optgroup label="淡水線">
-                            <option value="R12">R臺大醫院站</option>
-                            <option value="R13">R台北車站</option>
-                            <option value="R14">R中山站</option>
-                            <option value="R15">R雙連站</option>
-                        </optgroup>   
-                        <optgroup label="新店線">
-                                <option value="G01">G新店站</option>
-                                <option value="G02">G新店區公所站</option>
-                        </optgroup>
-                  </select>
-
-                  <select name="Device" id="Device">
-                        <option value="ATIM" selected>ATIM</option>
-                        <option value="GATE">GATE</option>
-                        <option value="PAM">PAM</option>
-                        <option value="CCBE">CCBE</option>
-                        <option value="SPS">SPS</option>
-                  </select>
-
-                  <select name="Number" id="Number">
-                        <option value="1" selected>01</option>
-                        <option value="2">02</option>
-                        <option value="3">03</option>
-                        <option value="4">04</option>
-                        <option value="5">05</option>
-                        <option value="6">06</option>
-                        <option value="7">07</option>
-                        <option value="8">08</option>
-                        <option value="9">09</option>
-                        <option value="10">10</option>
-                  </select>
-                </fieldset>    
-                <button class="ui-btn ui-icon-search ui-btn-icon-left" id="btn_addRecord">送出查詢</button>
-            </div>
-          </div>
-
-    <script>
-
-       /* (function () {
-            $(document).on("pageinit", "#Page1", function () {
-                alert(1);
-                liff.init(function (data) {
-                    alert(1);
-                    initializeApp(data);
-                }
-                // 頁面第一次執行時會觸發
-                // 程式寫在這裡
-            });
-            $('#btn_addRecord').on("tap", function () {
-                myFunction();
-            }); 
-
-        })()*/
-        (function () {
-            $(document).on("pageload", "#Page1", function () {
-                liff.init(function (data) {
-                    initializeApp(data);
-                }
-                // 頁面第一次執行時會觸發
-                // 程式寫在這裡
-            );
-            $('#btn_addRecord').on("vclick", function () {
-                myFunction();
-            }); 
-            });
-        })();
-
-        function initializeApp(data){
-            var userid = data.context.userId;
-        }//取得用戶ID
-            
-        function Submit(comboText){
-            liff.sendMessages([{
-                type: 'text',
-                text: comboText
-            }]).then(() => {
-                //建立成功，關閉視窗
-                liff.closeWindow();
-            });
-        }
-                
-        function myFunction(){
+          function myFunction(){
             var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
-            //alert(comboText);
             Submit(comboText);
-             //alert(comboText);
-        }
-                
-        /*$(document).ready(function(){
+            //alert(comboText);
+          }
+          
+          $(document).ready(function(){
             liff.init(function (data) {
-                alert(1);
-                initializeApp(data);
+              initializeApp(data);
             });
-            $('#btn_addRecord').click(function (e) {
-                myFunction();
-            });  
-        });*/
+           $('#btn_addRecord').click(function (e) {
+             //新增
+             myFunction();
+          });
             
-    </script>
+          });
+      
+        </script>
 </body>
 </html>
