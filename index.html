@@ -66,42 +66,42 @@
             </div>
           </div>
 
-<script>
-        function initializeApp(data){
-            var userid = data.context.userId;
-        }//取得用戶ID
+          <script>
 
-        function Submit(comboText){
-            liff.sendMessages([
-            {
-                type: 'text',
-                text: comboText
-            }
-            ])
-            .then(() => {
-                    //建立成功，關閉視窗
-                liff.closeWindow();
-            });
-        }
-    
-        function myFunction(){
-            var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
+                function initializeApp(data){
+                        var userid = data.context.userId;
+                }//取得用戶ID
             
-            Submit(comboText);
+                function Submit(comboText){
+                 liff.sendMessages([
+                 {
+                   type: 'text',
+                   text: comboText
+                 }
+                 ])
+                   .then(() => {
+                                //建立成功，關閉視窗
+                                liff.closeWindow();
+                            });
+                }
+                
+                function myFunction(){
+                  var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
+                  Submit(comboText);
+                  //alert(comboText);
+                }
+                
+                $(document).ready(function(){
+                  liff.init(function (data) {
+                    initializeApp(data);
+                  });
+                 $('#btn_addRecord').click(function (e) {
+                   //新增
+                   myFunction();
+                });
+                  
+                });
             
-        }
-    
-        $(document).ready(function(){
-            liff.init(function (data) {
-                initializeApp(data);
-            });
-            $('#btn_addRecord').click(function (e) {
-                //新增
-                myFunction();
-            });
-        });
-
-        
-</script>
+              </script>
 </body>
 </html>
