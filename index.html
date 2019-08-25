@@ -9,34 +9,43 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script> 
   
-  <select id="Station" class="easyui-combobox" name="Station">
-      <option value="G01">G_新店</option>
-      <option value="G10">G_古亭</option>
-      <option value="G11">G_中正紀念堂</option>
-      <option value="BL07">BL_台北車站</option>
-      <option value="R13" selected>R_台北車站</option>
-      <option value="R33">R_淡水</option>
-  </select>
-  
-  <select id="Device" class="easyui-combobox" name="Device">
-      <option value="ATIM" selected>ATIM</option>
-      <option value="GATE">GATE</option>
-      <option value="CCBE">CCBE</option>
-      <option value="PAM">PAM</option>
-  </select>
-  
-  <select id="Number" class="easyui-combobox" name="Number">
-      <option value="1" selected>01</option>
-      <option value="2">02</option>
-      <option value="3">03</option>
-      <option value="4">04</option>
-      <option value="5">05</option>
-      <option value="6">06</option>
-      <option value="7">07</option>
-      <option value="8">08</option>
-      <option value="9">09</option>
-      <option value="10">10</option>
-  </select>
+ 
+      <select name="Station" class="easyui-combobox" id="Station">
+          <optgroup label="板南線">
+              <option value="BL07" selected>BL台北車站</option>
+          </optgroup>
+          <optgroup label="淡水線">
+              <option value="R12">R臺大醫院站</option>
+              <option value="R13">R台北車站</option>
+              <option value="R14">R中山站</option>
+              <option value="R15">R雙連站</option>
+          </optgroup>   
+          <optgroup label="新店線">
+                  <option value="G01">G新店站</option>
+                  <option value="G02">G新店區公所站</option>
+          </optgroup>
+    </select>
+
+    <select name="Device" class="easyui-combobox" id="Device">
+          <option value="ATIM" selected>ATIM</option>
+          <option value="GATE">GATE</option>
+          <option value="PAM">PAM</option>
+          <option value="CCBE">CCBE</option>
+          <option value="SPS">SPS</option>
+    </select>
+
+    <select name="Number" class="easyui-combobox" id="Number">
+          <option value="1" selected>01</option>
+          <option value="2">02</option>
+          <option value="3">03</option>
+          <option value="4">04</option>
+          <option value="5">05</option>
+          <option value="6">06</option>
+          <option value="7">07</option>
+          <option value="8">08</option>
+          <option value="9">09</option>
+          <option value="10">10</option>
+    </select>
   
   <button class="btn btn-success btn-block" id="btn_addRecord">送出查詢</button>
   <script>
