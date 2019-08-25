@@ -75,15 +75,24 @@
                 // 頁面第一次執行時會觸發
                 // 程式寫在這裡
             });
-            $('#btn_addRecord').click(function (e) {
+            $('#btn_addRecord').on("tap", function () {
                 myFunction();
             }); 
 
         })()
         (function () {
             $(document).on("pageshow", "#Page1", function () {
-                // 頁面載入會觸發
+                alert(2);
+                liff.init(function (data) {
+                    alert(1);
+                    initializeApp(data);
+                }
+                // 頁面第一次執行時會觸發
                 // 程式寫在這裡
+            });
+            $('#btn_addRecord').on("tap", function () {
+                myFunction();
+            }); 
             });
         })();
 
