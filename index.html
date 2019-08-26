@@ -8,6 +8,30 @@
         @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
         * {font-size: large;}
         * {font-family: 'Noto Sans TC',sans-serif;}
+        select{
+            width:500px; 
+            height:60px;
+            line-height: 55px;
+            font-size: 1.5rem;
+            border: 1px solid #000;            
+        }
+
+        #BL {
+            color: #ffffff;
+            background-color: #0026ff; /*選單背景顏色*/
+            }
+        #R {
+            color: #ffffff;
+            background-color: #ff0000; /*選單背景顏色*/
+        }
+        #G {
+            color: #ffffff;
+            background-color: #005c29; /*選單背景顏色*/
+        }
+
+
+
+
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -16,10 +40,10 @@
 </head>
 <body>
         <select name="Station" class="easyui-combobox" id="Station">
-                <optgroup label="板南線">
+                <optgroup label="板南線" id='BL'>
                     <option value="BL07" selected>BL台北車站</option>
                 </optgroup>
-                <optgroup label="淡水線">
+                <optgroup label="淡水線" id='R'>
                     <option value="R12">R臺大醫院站</option>
                     <option value="R13">R台北車站</option>
                     <option value="R14">R中山站</option>
@@ -42,7 +66,7 @@
                     <option value="R32">R紅樹林站</option>
                     <option value="R33">R淡水站</option>
                 </optgroup>   
-                <optgroup label="新店線">
+                <optgroup label="新店線" id='G'>
                         <option value="G01">G新店站</option>
                         <option value="G02">G新店區公所站</option>
                         <option value="G03">G七張站</option>
