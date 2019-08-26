@@ -99,6 +99,61 @@
 
         <script>
       
+            var dict = {
+                "BL07_ATIM" : 14, "BL07_GATE" : 18, "BL07_PAM" : 4,
+                "R12_ATIM" : 9, "R12_GATE" : 13, "R12_PAM" : 3,
+                "R13_ATIM" : 11, "R13_GATE" : 28, "R13_PAM" : 4,
+                "R14_ATIM" : 6, "R14_GATE" : 13, "R14_PAM" : 2,
+                "R15_ATIM" : 5, "R15_GATE" : 13, "R15_PAM" : 2,
+                "R16_ATIM" : 7, "R16_GATE" : 13, "R16_PAM" : 2,
+                "R17_ATIM" : 10, "R17_GATE" : 13, "R17_PAM" : 3,
+                "R18_ATIM" : 13, "R18_GATE" : 17, "R18_PAM" : 5,
+                "R20_ATIM" : 7, "R20_GATE" : 12, "R20_PAM" : 4,
+                "R21_ATIM" : 6, "R21_GATE" : 13, "R21_PAM" : 4,
+                "R22_ATIM" : 4, "R22_GATE" : 13, "R22_PAM" : 2,
+                "R23_ATIM" : 8, "R23_GATE" : 13, "R23_PAM" : 4,
+                "R24_ATIM" : 5, "R24_GATE" : 11, "R24_PAM" : 3,
+                "R25_ATIM" : 3, "R25_GATE" : 6, "R25_PAM" : 2,
+                "R26_ATIM" : 6, "R26_GATE" : 13, "R26_PAM" : 3,
+                "R27_ATIM" : 3, "R27_GATE" : 5, "R27_PAM" : 2,
+                "R28_ATIM" : 3, "R28_GATE" : 5, "R28_PAM" : 2,
+                "R29_ATIM" : 3, "R29_GATE" : 5, "R29_PAM" : 2,
+                "R30_ATIM" : 5, "R30_GATE" : 5, "R30_PAM" : 2,
+                "R31_ATIM" : 4, "R31_GATE" : 5, "R31_PAM" : 2,
+                "R32_ATIM" : 5, "R32_GATE" : 5, "R32_PAM" : 3,
+                "R33_ATIM" : 15, "R33_GATE" : 22, "R33_PAM" : 3,
+                "G01_ATIM" : 4, "G01_GATE" : 8, "G01_PAM" : 2,
+                "G01A_ATIM" : 3, "G01A_GATE" : 6, "G01A_PAM" : 2,
+                "G02_ATIM" : 5, "G02_GATE" : 8, "G02_PAM" : 3,
+                "G03_ATIM" : 6, "G03_GATE" : 12, "G03_PAM" : 3,
+                "G04_ATIM" : 4, "G04_GATE" : 12, "G04_PAM" : 3,
+                "G05_ATIM" : 4, "G05_GATE" : 22, "G05_PAM" : 3,
+                "G06_ATIM" : 4, "G06_GATE" : 22, "G06_PAM" : 3,
+                "G07_ATIM" : 9, "G07_GATE" : 22, "G07_PAM" : 3,
+                "G09_ATIM" : 4, "G09_GATE" : 22, "G09_PAM" : 3,
+                "G10_ATIM" : 6, "G10_GATE" : 22, "G10_PAM" : 3,
+                "G11_ATIM" : 13, "G11_GATE" : 22, "G11_PAM" : 4
+            };
+
+            function RefreshCombobox(){
+                if (($('#Device').find(":selected").val() === 'CCBE') || ($('#Device').find(":selected").val() === 'SPS')){
+                    $('#Number option').remove();
+                    $('#Number').append($("<option value='1' selected>1</option>"));
+                }else {
+                    $('#Number option').remove();
+                        var X=dict[$('#Station').find(":selected").val()+'_'+$('#Device').find(":selected").val()];
+                        for (var i=1; i<=X; i++) {
+                            $("#Number").append($("<option value='" + i + "'>" + i + "</option>"));
+                        }
+                }    
+            }
+
+
+
+
+
+
+
           function initializeApp(data){
                   var userid = data.context.userId;
           }//取得用戶ID
@@ -123,6 +178,7 @@
           }
           
           $(document).ready(function(){
+            RefreshCombobox()
             liff.init(function (data) {
               initializeApp(data);
             });
@@ -130,9 +186,15 @@
              //新增
              myFunction();
           });
-            
-          });
-      
+          $('#Station').change(function (e) {
+                RefreshCombobox()
+            });
+
+
+     $('#Device').change(function (e) {
+      RefreshCombobox()
+      });
+    });
         </script>
 </body>
 </html>
