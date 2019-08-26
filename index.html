@@ -1,176 +1,140 @@
-<!doctype html>
-<html lang="zh">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>設備篩選</title>
-    <style>
-        @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
-        * {font-size: large;}
-        * {font-family: 'Noto Sans TC',sans-serif;}
-        select{
-            width:200px; 
-            height:60px;
-            line-height: 55px;
-            font-size: 1.5rem;
-            border: 1px solid #000;            
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+    @import url(http://fonts.googleapis.com/earlyaccess/notosanstc.css);
+    * {font-size: large;}
+    * {font-family: 'Noto Sans TC',sans-serif;}
 
-        #BL {
-            color: #ffffff;
-            background-color: #0026ff; /*選單背景顏色*/
-            }
-        #R {
-            color: #ffffff;
-            background-color: #ff0000; /*選單背景顏色*/
-        }
-        #G {
-            color: #ffffff;
-            background-color: #005c29; /*選單背景顏色*/
-        }
+    select {
+width:500px; 
+height:60px;
+line-height: 55px;
+font-size: 1.5rem;
+border: 1px solid #000;
 
 
-
-
-    </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script> 
-
+}
+    #BL {
+      color: #ffffff;
+background-color: #0026ff; /*選單背景顏色*/
+}
+#R {
+  color: #ffffff;
+background-color: #ff0000; /*選單背景顏色*/
+}
+#G {
+  color: #ffffff;
+background-color: #005c29; /*選單背景顏色*/
+}
+</style>
+<h1>篩選功能測試</h1>
 </head>
 <body>
-        <select name="Station" class="easyui-combobox" id="Station">
-                <optgroup label="板南線" id='BL'>
-                    <option value="BL07" selected>BL台北車站</option>
-                </optgroup>
-                <optgroup label="淡水線" id='R'>
-                    <option value="R12">R臺大醫院站</option>
-                    <option value="R13">R台北車站</option>
-                    <option value="R14">R中山站</option>
-                    <option value="R15">R雙連站</option>
-                    <option value="R16">R民權西路站</option>
-                    <option value="R17">R圓山站</option>
-                    <option value="R18">R劍潭站</option>
-                    <option value="R20">R士林站</option>
-                    <option value="R21">R芝山站</option>
-                    <option value="R22">R明德站</option>
-                    <option value="R23">R石牌站</option>
-                    <option value="R24">R唭哩岸站</option>
-                    <option value="R25">R奇岩站</option>
-                    <option value="R26">R北投站</option>
-                    <option value="R27">R新北投站</option>
-                    <option value="R28">R復興崗站</option>
-                    <option value="R29">R忠義站</option>
-                    <option value="R30">R關渡站</option>
-                    <option value="R31">R竹圍站</option>
-                    <option value="R32">R紅樹林站</option>
-                    <option value="R33">R淡水站</option>
-                </optgroup>   
-                <optgroup label="新店線" id='G'>
-                        <option value="G01">G新店站</option>
-                        <option value="G02">G新店區公所站</option>
-                        <option value="G03">G七張站</option>
-                        <option value="G04">G大坪林站</option>
-                        <option value="G05">G景美站</option>
-                        <option value="G06">G萬隆站</option>
-                        <option value="G07">G公館站</option>
-                        <option value="G09">G台電大樓站</option>
-                        <option value="G10">G古亭站</option>
-                        <option value="G11">G中正紀念堂站</option>
-                </optgroup>
-          </select>
-      
-          <select name="Device" class="easyui-combobox" id="Device">
-                <option value="ATIM" selected>ATIM</option>
-                <option value="GATE">GATE</option>
-                <option value="PAM">PAM</option>
-                <option value="CCBE">CCBE</option>
-                <option value="SPS">SPS</option>
-          </select>
-      
-          <select name="Number" class="easyui-combobox" id="Number">
-                <option value="1" selected>01</option>
-                <option value="2">02</option>
-                <option value="3">03</option>
-                <option value="4">04</option>
-                <option value="5">05</option>
-                <option value="6">06</option>
-                <option value="7">07</option>
-                <option value="8">08</option>
-                <option value="9">09</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option>
-                <option value="21">21</option>
-                <option value="22">22</option>
-                <option value="23">23</option>
-                <option value="24">24</option>
-                <option value="25">25</option>
-                <option value="26">26</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-          </select>
-        
-        <button class="btn btn-success btn-block" id="btn_addRecord">送出查詢</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script> 
+  
+ 
+      <select name="Station" class="easyui-combobox" id="Station">
+          <optgroup label="板南線" id='BL'>
+              <option value="BL07" selected>BL台北車站</option>
+          </optgroup>
+          <optgroup label="淡水線" id='R'>
+              <option value="R12">R臺大醫院站</option>
+              <option value="R13">R台北車站</option>
+              <option value="R14">R中山站</option>
+              <option value="R15">R雙連站</option>
+          </optgroup>   
+          <optgroup label="新店線" id='G'>
+                  <option value="G01">G新店站</option>
+                  <option value="G02">G新店區公所站</option>
+          </optgroup>
+    </select>
 
-        <script>
-      
-            var dict = {
-                "BL07_ATIM" : 14, "BL07_GATE" : 18, "BL07_PAM" : 4,
-                "R12_ATIM" : 9, "R12_GATE" : 13, "R12_PAM" : 3,
-                "R13_ATIM" : 11, "R13_GATE" : 28, "R13_PAM" : 4,
-                "R14_ATIM" : 6, "R14_GATE" : 13, "R14_PAM" : 2,
-                "R15_ATIM" : 5, "R15_GATE" : 13, "R15_PAM" : 2,
-                "R16_ATIM" : 7, "R16_GATE" : 13, "R16_PAM" : 2,
-                "R17_ATIM" : 10, "R17_GATE" : 13, "R17_PAM" : 3,
-                "R18_ATIM" : 13, "R18_GATE" : 17, "R18_PAM" : 5,
-                "R20_ATIM" : 7, "R20_GATE" : 12, "R20_PAM" : 4,
-                "R21_ATIM" : 6, "R21_GATE" : 13, "R21_PAM" : 4,
-                "R22_ATIM" : 4, "R22_GATE" : 13, "R22_PAM" : 2,
-                "R23_ATIM" : 8, "R23_GATE" : 13, "R23_PAM" : 4,
-                "R24_ATIM" : 5, "R24_GATE" : 11, "R24_PAM" : 3,
-                "R25_ATIM" : 3, "R25_GATE" : 6, "R25_PAM" : 2,
-                "R26_ATIM" : 6, "R26_GATE" : 13, "R26_PAM" : 3,
-                "R27_ATIM" : 3, "R27_GATE" : 5, "R27_PAM" : 2,
-                "R28_ATIM" : 3, "R28_GATE" : 5, "R28_PAM" : 2,
-                "R29_ATIM" : 3, "R29_GATE" : 5, "R29_PAM" : 2,
-                "R30_ATIM" : 5, "R30_GATE" : 5, "R30_PAM" : 2,
-                "R31_ATIM" : 4, "R31_GATE" : 5, "R31_PAM" : 2,
-                "R32_ATIM" : 5, "R32_GATE" : 5, "R32_PAM" : 3,
-                "R33_ATIM" : 15, "R33_GATE" : 22, "R33_PAM" : 3,
-                "G01_ATIM" : 4, "G01_GATE" : 8, "G01_PAM" : 2,
-                "G01A_ATIM" : 3, "G01A_GATE" : 6, "G01A_PAM" : 2,
-                "G02_ATIM" : 5, "G02_GATE" : 8, "G02_PAM" : 3,
-                "G03_ATIM" : 6, "G03_GATE" : 12, "G03_PAM" : 3,
-                "G04_ATIM" : 4, "G04_GATE" : 12, "G04_PAM" : 3,
-                "G05_ATIM" : 4, "G05_GATE" : 22, "G05_PAM" : 3,
-                "G06_ATIM" : 4, "G06_GATE" : 22, "G06_PAM" : 3,
-                "G07_ATIM" : 9, "G07_GATE" : 22, "G07_PAM" : 3,
-                "G09_ATIM" : 4, "G09_GATE" : 22, "G09_PAM" : 3,
-                "G10_ATIM" : 6, "G10_GATE" : 22, "G10_PAM" : 3,
-                "G11_ATIM" : 13, "G11_GATE" : 22, "G11_PAM" : 4
-            };
+    <select name="Device" class="easyui-combobox" id="Device">
+          <option value="ATIM" selected>ATIM</option>
+          <option value="GATE">GATE</option>
+          <option value="PAM">PAM</option>
+          <option value="CCBE">CCBE</option>
+          <option value="SPS">SPS</option>
+    </select>
 
-            function RefreshCombobox(){
-                if (($('#Device').find(":selected").val() === 'CCBE') || ($('#Device').find(":selected").val() === 'SPS')){
-                    $('#Number option').remove();
-                    $('#Number').append($("<option value='1' selected>1</option>"));
-                }else {
-                    $('#Number option').remove();
-                        var X=dict[$('#Station').find(":selected").val()+'_'+$('#Device').find(":selected").val()];
-                        for (var i=1; i<=X; i++) {
-                            $("#Number").append($("<option value='" + i + "'>" + i + "</option>"));
-                        }
-                }    
-            }
+    <select name="Number" class="easyui-combobox" id="Number">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+    </select>
+  
+  <button class="btn btn-success btn-block" id="btn_addRecord">送出查詢</button>
+  <script>
+
+    function initializeApp(data){
+            var userid = data.context.userId;
+    }//取得用戶ID
+
+    function Submit(comboText){
+     liff.sendMessages([
+     {
+       type: 'text',
+       text: comboText
+     }
+     ])
+       .then(() => {
+                    //建立成功，關閉視窗
+                    liff.closeWindow();
+                });
+    }
+    
+    function myFunction(){
+      var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
+      Submit(comboText);
+      //alert(comboText);
+    }
+    
+
+    var dict = {
+        "BL07_ATIM" : 14, "BL07_GATE" : 18, "BL07_PAM" : 4,
+        "R12_ATIM" : 9, "R12_GATE" : 13, "R12_PAM" : 3,
+        "R13_ATIM" : 11, "R13_GATE" : 28, "R13_PAM" : 4,
+        "R14_ATIM" : 6, "R14_GATE" : 13, "R14_PAM" : 2,
+        "R15_ATIM" : 5, "R15_GATE" : 13, "R15_PAM" : 2,
+        "R16_ATIM" : 7, "R16_GATE" : 13, "R16_PAM" : 2,
+        "R17_ATIM" : 10, "R17_GATE" : 13, "R17_PAM" : 3,
+        "R18_ATIM" : 13, "R18_GATE" : 17, "R18_PAM" : 5,
+        "R20_ATIM" : 7, "R20_GATE" : 12, "R20_PAM" : 4,
+        "R21_ATIM" : 6, "R21_GATE" : 13, "R21_PAM" : 4,
+        "R22_ATIM" : 4, "R22_GATE" : 13, "R22_PAM" : 2,
+        "R23_ATIM" : 8, "R23_GATE" : 13, "R23_PAM" : 4,
+        "R24_ATIM" : 5, "R24_GATE" : 11, "R24_PAM" : 3,
+        "R25_ATIM" : 3, "R25_GATE" : 6, "R25_PAM" : 2,
+        "R26_ATIM" : 6, "R26_GATE" : 13, "R26_PAM" : 3,
+        "R27_ATIM" : 3, "R27_GATE" : 5, "R27_PAM" : 2,
+        "R28_ATIM" : 3, "R28_GATE" : 5, "R28_PAM" : 2,
+        "R29_ATIM" : 3, "R29_GATE" : 5, "R29_PAM" : 2,
+        "R30_ATIM" : 5, "R30_GATE" : 5, "R30_PAM" : 2,
+        "R31_ATIM" : 4, "R31_GATE" : 5, "R31_PAM" : 2,
+        "R32_ATIM" : 5, "R32_GATE" : 5, "R32_PAM" : 3,
+        "R33_ATIM" : 15, "R33_GATE" : 22, "R33_PAM" : 3,
+        "G01_ATIM" : 4, "G01_GATE" : 8, "G01_PAM" : 2,
+        "G01A_ATIM" : 3, "G01A_GATE" : 6, "G01A_PAM" : 2,
+        "G02_ATIM" : 5, "G02_GATE" : 8, "G02_PAM" : 3,
+        "G03_ATIM" : 6, "G03_GATE" : 12, "G03_PAM" : 3,
+        "G04_ATIM" : 4, "G04_GATE" : 12, "G04_PAM" : 3,
+        "G05_ATIM" : 4, "G05_GATE" : 22, "G05_PAM" : 3,
+        "G06_ATIM" : 4, "G06_GATE" : 22, "G06_PAM" : 3,
+        "G07_ATIM" : 9, "G07_GATE" : 22, "G07_PAM" : 3,
+        "G09_ATIM" : 4, "G09_GATE" : 22, "G09_PAM" : 3,
+        "G10_ATIM" : 6, "G10_GATE" : 22, "G10_PAM" : 3,
+        "G11_ATIM" : 13, "G11_GATE" : 22, "G11_PAM" : 4
+    };
 
 
 
@@ -178,47 +142,48 @@
 
 
 
-          function initializeApp(data){
-                  var userid = data.context.userId;
-          }//取得用戶ID
-      
-          function Submit(comboText){
-           liff.sendMessages([
-           {
-             type: 'text',
-             text: comboText
-           }
-           ])
-             .then(() => {
-                          //建立成功，關閉視窗
-                          liff.closeWindow();
-                      });
+
+
+
+    function RefreshCombobox(){
+      if (($('#Device').find(":selected").val() === 'CCBE') || ($('#Device').find(":selected").val() === 'SPS')){
+          $('#Number option').remove();
+          $('#Number').append($("<option value='1' selected>1</option>"));
+       }else {
+          $('#Number option').remove();
+          var X=dict[$('#Station').find(":selected").val()+'_'+$('#Device').find(":selected").val()];
+          for (var i=1; i<=X; i++) {
+            $("#Number").append($("<option value='" + i + "'>" + i + "</option>"));
           }
-          
-          function myFunction(){
-            var comboText='!'+$('#Station').find(":selected").val()+' '+$('#Device').find(":selected").val()+' '+$('#Number').find(":selected").val()
-            Submit(comboText);
-            //alert(comboText);
-          }
-          
-          $(document).ready(function(){
-            RefreshCombobox()
-            liff.init(function (data) {
-              initializeApp(data);
-            });
-           $('#btn_addRecord').click(function (e) {
-             //新增
-             myFunction();
-          });
-          $('#Station').change(function (e) {
-                RefreshCombobox()
-            });
+        }    
+    }
+
+
+
+
+
+    $(document).ready(function(){
+      RefreshCombobox()
+      liff.init(function (data) {
+        initializeApp(data);
+      });
+     $('#btn_addRecord').click(function (e) {
+       //新增
+       myFunction();
+      });
+
+    $('#Station').change(function (e) {
+      RefreshCombobox()
+      });
 
 
      $('#Device').change(function (e) {
       RefreshCombobox()
       });
     });
-        </script>
+
+  </script>
 </body>
+
 </html>
+  
